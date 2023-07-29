@@ -1,3 +1,6 @@
+from classes.order import Order
+
+
 class Customer:
     def __init__(self, name):
         self.name = name
@@ -14,11 +17,12 @@ class Customer:
             raise Exception
 
     def orders(self):
-        from classes.order import Order
-
         return [order for order in Order.all if order.customer == self]
 
     def coffees(self):
         from classes.coffee import Coffee
 
         return [*set([order.coffee for order in self.orders()])]
+
+    def create_order(self, coffee, price):
+        return Order(self, coffee, price)
