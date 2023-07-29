@@ -85,3 +85,14 @@ class TestCustomer:
 
         assert len(set(customer.coffees())) == len(customer.coffees())
         assert len(customer.coffees()) == 2
+
+    def test_customer_create_order(self):
+        """test create_order()"""
+        coffee = Coffee("Vanilla Latte")
+
+        customer = Customer("Dima")
+        customer.create_order(coffee, 3)
+        customer.create_order(coffee, 5)
+
+        assert len(customer.orders()) == 2
+        assert coffee in customer.coffees()

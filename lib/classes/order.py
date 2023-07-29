@@ -1,6 +1,4 @@
-
 class Order:
-
     all = []
 
     def __init__(self, customer, coffee, price):
@@ -9,32 +7,28 @@ class Order:
         self.price = price
         Order.all.append(self)
 
-        coffee.orders(self)
-        coffee.customers(customer)
-
-        customer.orders(self)
-        customer.coffees(coffee)
-
     @property
     def customer(self):
         return self._customer
-    
+
     @customer.setter
     def customer(self, customer):
         from classes.customer import Customer
+
         if isinstance(customer, Customer):
             self._customer = customer
         else:
             raise Exception
-        
+
     @property
-    def order(self):
-        return self._order
-    
-    @order.setter
-    def order(self, order):
-        from classes.order import Order
-        if isinstance(order, Order):
-            self._order = order
+    def coffee(self):
+        return self._coffee
+
+    @coffee.setter
+    def coffee(self, coffee):
+        from classes.coffee import Coffee
+
+        if isinstance(coffee, Coffee):
+            self._coffee = coffee
         else:
             raise Exception
