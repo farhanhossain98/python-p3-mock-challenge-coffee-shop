@@ -67,6 +67,7 @@ build out any helper methods if needed.
   - Names must be between 1 and 15 characters, inclusive
   - if you are using exceptions, uncomment lines 26-27 and 34-38 in
     `customer_test.py`.
+    - `raise Exception` if setter fails
 
 #### Coffee
 
@@ -75,8 +76,9 @@ build out any helper methods if needed.
 - `Coffee property name`
   - Returns the coffee's name
   - Should not be able to change after the coffee is created
-  - _hint: `hasattr()`_
+  - _hint: `hasattr()`_ (this is a different way than I've been showing, still has setter, but with conditional)
   - if you are using exceptions, uncomment lines 24-25 in `coffee_test.py`.
+    - `raise Exception` if setter fails
 
 #### Order
 
@@ -85,57 +87,50 @@ build out any helper methods if needed.
 - `Order property price`
   - Returns the price for a coffee
   - Price must be a number between 1 and 10, inclusive
+    - `raise Exception` if setter fails
 
 ### Object Relationship Methods and Properties
 
 #### Order
 
-- `Order property customer`
+- `Order property customer(self)`
   - Returns the customer object for that order
   - Must be of type `Customer`
-- `Order property coffee`
+  - `raise Exception` if setter fails
+- `Order property coffee(self)`
   - Returns the coffee object for that order
   - Must be of type `Coffee`
+  - `raise Exception` if setter fails
 
 #### Coffee
 
-- `Coffee orders(new_order=None)`
-  - Adds new orders to coffee
+- `Coffee orders(self)`
   - Returns a list of all orders for that coffee
-  - orders must be of type `Order`
-  - _Will be called from `Order.__init__`_
-- `Coffee customers(new_customer=None)`
-  - Adds new customers to coffee
+- `Coffee customers(self)`
   - Returns a **unique** list of all customers who have ordered a particular coffee.
-  - Customers must be of type `Customer`
-  - _Will be called from `Order.__init__`_
+
 
 #### Customer
 
-- `Customer orders(new_order=None)`
-  - Adds new orders to customer
+- `Customer orders(self)`
   - Returns a list of all orders a customer has ordered
-  - orders must be of type `Order`
-  - _Will be called from `Order.__init__`_
-- `Customer coffees(new_coffee=None)`
-  - Adds new coffees to customer
+ 
+- `Customer coffees(self)`
   - Returns a **unique** list of all coffees a customer has ordered
-  - Coffees must be of type `Coffee`
-  - _Will be called from `Order.__init__`_
-
+  
 ### Aggregate and Association Methods
 
 #### Customer
 
-- `Customer create_order(coffee, price)`
+- `Customer create_order(self, coffee, price)`
   - given a **coffee object** and a price(as an integer), creates a
     new order and associates it with that customer and coffee.
 
 #### Coffee
 
-- `Coffee num_orders()`
+- `Coffee num_orders(self)`
   - Returns the total number of times that coffee has been ordered
-- `Coffee average_price()`
+- `Coffee average_price(self)`
   - Returns the average price for a coffee based on its orders
   - Reminder: you can calculate the average by adding up all the orders prices and
     dividing by the number of orders
