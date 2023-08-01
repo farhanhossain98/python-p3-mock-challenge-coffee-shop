@@ -8,6 +8,17 @@ class Order:
         Order.all.append(self)
 
     @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, value):
+        if type(value) in (int, float) and 1 <= value <= 10:
+            self._price = value
+        else:
+            raise Exception("price invalid")
+
+    @property
     def customer(self):
         return self._customer
 
